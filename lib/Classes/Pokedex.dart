@@ -1,13 +1,5 @@
-import 'api.dart';
-import 'PxResponse.dart';
-import 'package:mobx/mobx.dart';
-part 'Pokedex.g.dart';
-
-class myPokedex = Pokedex with _$myPokedex;
-
-abstract class Pokedex with Store{
+class Pokedex{
   int generation;
-  @observable
   List<String> pokemons;
 
   Pokedex(){
@@ -19,14 +11,13 @@ abstract class Pokedex with Store{
     generation = gen;
   }
 
-  @action
   void _addPoke(String poke){
     pokemons.add(poke);
   }
 
   factory Pokedex.fromJson(Map<String,dynamic> json) {
     try{
-      var item = new myPokedex();
+      var item = new Pokedex();
       item.setGen(json['id']);
       json['pokemon_species'].forEach((elem){
         item._addPoke(elem['name']);
@@ -39,15 +30,4 @@ abstract class Pokedex with Store{
     }
   }
 
-  @action
-  Future<Pokedex> setPokedex(int gen) async{
-    PxResponse res;
-    res = await getPokedex(gen);
-    if(res.error != null){
-      return null;
-    }else
-    {
-      return res.res;
-    }
-  }
 }

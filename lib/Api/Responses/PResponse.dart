@@ -1,4 +1,4 @@
-import 'Pokemon.dart';
+import '../../Classes/Pokemon.dart';
 
 
 class PResponse {

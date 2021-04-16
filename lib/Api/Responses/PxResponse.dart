@@ -1,4 +1,4 @@
-import 'package:pokedex/Pokedex.dart';
+import 'package:pokedex/Classes/Pokedex.dart';
 
 
 class PxResponse {
