@@ -1,5 +1,6 @@
 import 'Pokemon.dart';
 
+
 class PResponse {
   Pokemon res;
   String error;

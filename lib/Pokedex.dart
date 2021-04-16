@@ -1,21 +1,53 @@
-import 'package:pokedex/Pokemon.dart';
 import 'api.dart';
+import 'PxResponse.dart';
+import 'package:mobx/mobx.dart';
+part 'Pokedex.g.dart';
 
-class Pokedex {
+class myPokedex = Pokedex with _$myPokedex;
+
+abstract class Pokedex with Store{
   int generation;
-  List<Pokemon> pokemons;
+  @observable
+  List<String> pokemons;
 
-  Pokedex(int generationIn, List<Pokemon> poks){
-    generation = generationIn;
-    pokemons = poks;
+  Pokedex(){
+    generation = 0;
+    pokemons = [];
+  }
+
+  void setGen(int gen){
+    generation = gen;
+  }
+
+  @action
+  void _addPoke(String poke){
+    pokemons.add(poke);
   }
 
   factory Pokedex.fromJson(Map<String,dynamic> json) {
-    var pokeList = <Pokemon>[];
-    json['pokemon_species'].forEach((elem){
-      pokeList.add(elem['name']);
-    });
-    var item = new Pokedex(json['id'], pokeList);
-    return item;
+    try{
+      var item = new myPokedex();
+      item.setGen(json['id']);
+      json['pokemon_species'].forEach((elem){
+        item._addPoke(elem['name']);
+      });
+      return item;
+    }
+    catch(e){
+      print(e);
+      return null;
+    }
+  }
+
+  @action
+  Future<Pokedex> setPokedex(int gen) async{
+    PxResponse res;
+    res = await getPokedex(gen);
+    if(res.error != null){
+      return null;
+    }else
+    {
+      return res.res;
+    }
   }
 }
