@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'pokemonListPage.dart';
 
 
 void main() {
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Center(
                     child: ListTile(
                       title: Text("Generation " + i.toString()),
-                      onTap: () => print(i),
+                      onTap: () => pokemonListPage(context,i),
                     ),
                   ),
                 ),
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Center(
                     child: ListTile(
                       title: Text("Generation " + (j).toString()),
-                      onTap: () => print(i),
+                      onTap: () => pokemonListPage(context,i),
                     ),
                   ),
                 ),

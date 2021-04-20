@@ -24,18 +24,40 @@ mixin _$pokedexController on _pokedexController, Store {
     });
   }
 
-  final _$buildPokedexAsyncAction =
-      AsyncAction('_pokedexController.buildPokedex');
+  final _$errorAtom = Atom(name: '_pokedexController.error');
 
   @override
-  Future buildPokedex(int gen) {
-    return _$buildPokedexAsyncAction.run(() => super.buildPokedex(gen));
+  bool get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(bool value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
+  final _$_pokedexControllerActionController =
+      ActionController(name: '_pokedexController');
+
+  @override
+  void buildPokedex(int gen) {
+    final _$actionInfo = _$_pokedexControllerActionController.startAction(
+        name: '_pokedexController.buildPokedex');
+    try {
+      return super.buildPokedex(gen);
+    } finally {
+      _$_pokedexControllerActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-pokedex: ${pokedex}
+pokedex: ${pokedex},
+error: ${error}
     ''';
   }
 }

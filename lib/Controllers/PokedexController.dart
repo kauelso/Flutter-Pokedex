@@ -9,12 +9,20 @@ class pokedexController = _pokedexController with _$pokedexController;
 abstract class _pokedexController with Store{
  @observable
   Pokedex pokedex;
+ @observable
+  bool error = false;
 
  @action
- void buildPokedex(int gen) async{
-   PxResponse response = await getPokedex(gen);
-   if(response.error == null){
-     pokedex = response.res;
+ void buildPokedex(int gen) {
+   getPokedex(gen).then((value) {
+     if(value.error == null){
+       pokedex = value.res;
+     }
+     else{
+       error = true;
+     }
    }
+   );
  }
+
 }

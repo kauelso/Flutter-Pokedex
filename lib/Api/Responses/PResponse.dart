@@ -1,4 +1,4 @@
-import '../../Classes/Pokemon.dart';
+import 'package:pokedex/Classes/Pokemon.dart';
 
 
 class PResponse {

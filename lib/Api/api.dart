@@ -1,7 +1,7 @@
 import "package:dio/dio.dart";
 import 'package:pokedex/Classes/Pokedex.dart';
 import 'package:pokedex/Classes/Pokemon.dart';
-import 'Responses/PResponse.dart';
+import 'package:pokedex/Api/Responses/PResponse.dart';
 import 'Responses/PxResponse.dart';
 
 Future<PResponse> getPokemon(String pokemon) async{
