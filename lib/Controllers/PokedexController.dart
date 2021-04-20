@@ -1,5 +1,4 @@
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/Api/Responses/PxResponse.dart';
 import 'package:pokedex/Api/api.dart';
 import 'package:pokedex/Classes/Pokedex.dart';
 part 'PokedexController.g.dart';

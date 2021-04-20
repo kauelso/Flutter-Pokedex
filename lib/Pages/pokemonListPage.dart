@@ -22,9 +22,9 @@ void pokemonListPage(BuildContext context,int gen){
                       return Text("Erro na API");
                     }
                     if(controller.pokedex != null){
-                        return Column(
-                          children: _buildRows(controller.pokedex),
-                        );
+                            return Column(
+                            children: _buildRows(controller.pokedex),
+                          );
                     }
                     return Text("Carregando...");
                   },
@@ -37,7 +37,6 @@ void pokemonListPage(BuildContext context,int gen){
 }
 
 List<Widget> _buildRows(Pokedex pkd){
-  final image = Image.network("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/132.png");
   var rowList = <Widget>[];
   for(int i = 0; i < pkd.pokemons.length;i = i+2){
     if(i+1 == pkd.pokemons.length){
@@ -49,15 +48,17 @@ List<Widget> _buildRows(Pokedex pkd){
                   Material(
                     child: GestureDetector(
                       onTap: () => print("Clickou"),
-                      child: Container(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: image,
+                      child: Card(
+                        child: Container(
+                          height: 70,
+                          width: 120,
+                          child: Center(child: Text(pkd.pokemons[i]),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Text(pkd.pokemons[i])
+
                 ],
               )
           )
@@ -68,40 +69,34 @@ List<Widget> _buildRows(Pokedex pkd){
       rowList.add(Row(
         children: [
           Expanded(
-              child: Column(
-                children: [
-                  Material(
+              child: Material(
                     child: GestureDetector(
                       onTap: () => print("Clickou"),
-                      child: Container(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: image,
+                      child: Card(
+                        child: Container(
+                          height: 70,
+                          width: 120,
+                          child: Center(child: Text(pkd.pokemons[i]),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Text(pkd.pokemons[i])
-                ],
-              )
           ),
           Expanded(
-              child: Column(
-                children: [
-                  Material(
+              child: Material(
                     child: GestureDetector(
                       onTap: () => print("Clickou"),
-                      child: Container(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: image,
-                        ),
+                      child: Card(
+                        child: Container(
+                          height: 70,
+                          width: 120,
+                          child: Center(child: Text(pkd.pokemons[i+1]),
+                          ),
                       ),
                     ),
                   ),
-                  Text(pkd.pokemons[i+1])
-                ],
-              )
+          )
           )
         ],
       ));
