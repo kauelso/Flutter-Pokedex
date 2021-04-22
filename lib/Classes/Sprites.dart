@@ -6,7 +6,8 @@ class Sprites{
   }
 
   void addSprite(String a){
-    sprites.add(a);
+    if(a != null)
+      sprites.add(a);
   }
 
   factory Sprites.fromJson(dynamic json) {

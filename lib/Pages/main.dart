@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Center(
                     child: ListTile(
                       title: Text("Generation " + (j).toString()),
-                      onTap: () => pokemonListPage(context,i),
+                      onTap: () => pokemonListPage(context,i+1),
                     ),
                   ),
                 ),

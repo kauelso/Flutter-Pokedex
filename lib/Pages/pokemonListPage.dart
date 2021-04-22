@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex/Classes/Pokedex.dart';
 import 'package:pokedex/Controllers/PokedexController.dart';
+import 'package:pokedex/Pages/PokemonPage.dart';
 
 void pokemonListPage(BuildContext context,int gen){
   var controller = pokedexController();
@@ -23,7 +24,7 @@ void pokemonListPage(BuildContext context,int gen){
                     }
                     if(controller.pokedex != null){
                             return Column(
-                            children: _buildRows(controller.pokedex),
+                            children: _buildRows(context,controller.pokedex),
                           );
                     }
                     return Text("Carregando...");
@@ -36,7 +37,7 @@ void pokemonListPage(BuildContext context,int gen){
   );
 }
 
-List<Widget> _buildRows(Pokedex pkd){
+List<Widget> _buildRows(BuildContext context,Pokedex pkd){
   var rowList = <Widget>[];
   for(int i = 0; i < pkd.pokemons.length;i = i+2){
     if(i+1 == pkd.pokemons.length){
@@ -47,12 +48,12 @@ List<Widget> _buildRows(Pokedex pkd){
                 children: [
                   Material(
                     child: GestureDetector(
-                      onTap: () => print("Clickou"),
+                      onTap: () => pokemonPage(context, pkd.pokemons[i]),
                       child: Card(
                         child: Container(
                           height: 70,
                           width: 120,
-                          child: Center(child: Text(pkd.pokemons[i]),
+                          child: Center(child: Text(pkd.pokemons[i].toUpperCase()),
                           ),
                         ),
                       ),
@@ -71,12 +72,12 @@ List<Widget> _buildRows(Pokedex pkd){
           Expanded(
               child: Material(
                     child: GestureDetector(
-                      onTap: () => print("Clickou"),
+                      onTap: () => pokemonPage(context, pkd.pokemons[i]),
                       child: Card(
                         child: Container(
                           height: 70,
                           width: 120,
-                          child: Center(child: Text(pkd.pokemons[i]),
+                          child: Center(child: Text(pkd.pokemons[i].toUpperCase()),
                           ),
                         ),
                       ),
@@ -86,12 +87,12 @@ List<Widget> _buildRows(Pokedex pkd){
           Expanded(
               child: Material(
                     child: GestureDetector(
-                      onTap: () => print("Clickou"),
+                      onTap: () => pokemonPage(context, pkd.pokemons[i+1]),
                       child: Card(
                         child: Container(
                           height: 70,
                           width: 120,
-                          child: Center(child: Text(pkd.pokemons[i+1]),
+                          child: Center(child: Text(pkd.pokemons[i+1].toUpperCase()),
                           ),
                       ),
                     ),
