@@ -2,9 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex/App/Core/Entities/Pokedex/Pokedex.dart';
 import 'package:pokedex/App/Core/Controllers/PokedexControllers/PokedexController.dart';
-import 'file:///D:/Dev/flutter/pokedex/lib/App/Module/PokemonPage/PokemonPage.dart';
+import 'package:pokedex/App/Module/PokemonPage/PokemonPage.dart';
 
-void pokemonListPage(BuildContext context,int gen){
+class PokemonListPage extends StatefulWidget {
+  int gen;
+  PokemonListPage(this.gen);
+  @override
+  _PokemonListPageState createState() => _PokemonListPageState();
+}
+
+class _PokemonListPageState extends State<PokemonListPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+Widget PokemoListPage(int gen){
   // var controller = pokedexController();
   // Navigator.of(context).push(
   //   MaterialPageRoute(

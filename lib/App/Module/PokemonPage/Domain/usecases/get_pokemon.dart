@@ -1,11 +1,13 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:dartz/dartz.dart';
+import 'package:pokedex/App/Core/Errors/errors.dart';
 import 'package:pokedex/App/Module/PokemonPage/Domain/Entities/Pokemon/Pokemon.dart';
 import 'package:pokedex/App/Module/PokemonPage/Infra/Repository/pokemon_repository.dart';
 part 'GetPokemonUseCaseImpl.g.dart';
 
 
 abstract class GetPokemonUseCase {
-  Future<Pokemon> call(String pokemon);
+  Future<Either<Failure,Pokemon>> call(String pokemon);
 }
 
 @Injectable()
@@ -15,13 +17,7 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase{
   GetPokemonUseCaseImpl(this.repository);
 
   @override
-  Future<Pokemon> call(String pokemon) async{
-    final result = await repository.getPokemon(pokemon);
-    if(result.error != null){
-      return null;
-    }
-    else{
-      return result.res;
-    }
+  Future<Either<Failure,Pokemon>> call(String pokemon) async{
+    return await repository.getPokemon(pokemon);
   }
 }

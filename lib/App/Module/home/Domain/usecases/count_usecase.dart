@@ -1,9 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/App/Core/Api/Infra/Repository/pokedex_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:pokedex/App/Core/Errors/errors.dart';
 part 'CountUseCaseImpl.g.dart';
 
 abstract class CountUseCase{
-  Future<int> call();
+  Future<Either<Failure,int>> call();
 }
 
 @Injectable()
@@ -13,13 +15,7 @@ class CountUseCaseImpl implements CountUseCase{
   CountUseCaseImpl(this.repository);
 
   @override
-  Future<int> call() async{
-    final result = await repository.getCountAPI();
-    if(result == null){
-      return null;
-    }
-    else{
-      return result;
+  Future<Either<Failure,int>> call() async{
+    return await repository.getCountAPI();
     }
   }
-}

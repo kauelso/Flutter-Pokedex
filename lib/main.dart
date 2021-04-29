@@ -6,5 +6,5 @@ import 'App/Module/home/Presentation/app_widget.dart';
 
 
 void main() {
-  void main() => runApp(ModularApp(module: AppModule()));
+  runApp(ModularApp(module: AppModule()));
 }
