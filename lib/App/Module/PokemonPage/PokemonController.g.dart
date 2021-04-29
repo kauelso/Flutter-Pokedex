@@ -39,18 +39,13 @@ mixin _$pokemonController on _pokemonController, Store {
     });
   }
 
-  final _$_pokemonControllerActionController =
-      ActionController(name: '_pokemonController');
+  final _$getPokemonFromAPIAsyncAction =
+      AsyncAction('_pokemonController.getPokemonFromAPI');
 
   @override
-  void getPokemonFromAPI(String name) {
-    final _$actionInfo = _$_pokemonControllerActionController.startAction(
-        name: '_pokemonController.getPokemonFromAPI');
-    try {
-      return super.getPokemonFromAPI(name);
-    } finally {
-      _$_pokemonControllerActionController.endAction(_$actionInfo);
-    }
+  Future getPokemonFromAPI(String name) {
+    return _$getPokemonFromAPIAsyncAction
+        .run(() => super.getPokemonFromAPI(name));
   }
 
   @override

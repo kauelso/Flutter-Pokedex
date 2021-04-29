@@ -1,5 +1,3 @@
-import 'package:pokedex/Api/api.dart';
-import 'package:pokedex/Classes/Pokemon.dart';
 
 class Pokedex{
   int generation;
@@ -13,8 +11,6 @@ class Pokedex{
   void setGen(int gen){
     generation = gen;
   }
-
-
 
   void _addPoke(String poke){
     pokemons.add(poke);

@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex/Classes/Pokedex.dart';
-import 'package:pokedex/Controllers/PokedexController.dart';
-import 'package:pokedex/Pages/PokemonPage.dart';
+import 'package:pokedex/App/Core/Entities/Pokedex/Pokedex.dart';
+import 'package:pokedex/App/Core/Controllers/PokedexControllers/PokedexController.dart';
+import 'file:///D:/Dev/flutter/pokedex/lib/App/Module/PokemonPage/PokemonPage.dart';
 
 void pokemonListPage(BuildContext context,int gen){
-  var controller = pokedexController();
-  Navigator.of(context).push(
-    MaterialPageRoute(
-        builder: (BuildContext context){
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Generation "+ gen.toString()),
-              backgroundColor: Colors.red,
-            ),
-            body: Container(
-              child: SingleChildScrollView(
-                child: Observer(
-                  builder: (_){
-                    controller.buildPokedex(gen);
-                    if(controller.error == true){
-                      return Text("Erro na API");
-                    }
-                    if(controller.pokedex != null){
-                            return Column(
-                            children: _buildRows(context,controller.pokedex),
-                          );
-                    }
-                    return Text("Carregando...");
-                  },
-                ),
-              ),
-            ),
-          );
-        })
-  );
+  // var controller = pokedexController();
+  // Navigator.of(context).push(
+  //   MaterialPageRoute(
+  //       builder: (BuildContext context){
+  //         return Scaffold(
+  //           appBar: AppBar(
+  //             title: Text("Generation "+ gen.toString()),
+  //             backgroundColor: Colors.red,
+  //           ),
+  //           body: Container(
+  //             child: SingleChildScrollView(
+  //               child: Observer(
+  //                 builder: (_){
+  //                   controller.buildPokedex(gen);
+  //                   if(controller.error == true){
+  //                     return Text("Erro na API");
+  //                   }
+  //                   if(controller.pokedex != null){
+  //                           return Column(
+  //                           children: _buildRows(context,controller.pokedex),
+  //                         );
+  //                   }
+  //                   return Text("Carregando...");
+  //                 },
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  //       })
+  // );
 }
 
 List<Widget> _buildRows(BuildContext context,Pokedex pkd){
@@ -48,7 +48,7 @@ List<Widget> _buildRows(BuildContext context,Pokedex pkd){
                 children: [
                   Material(
                     child: GestureDetector(
-                      onTap: () => pokemonPage(context, pkd.pokemons[i]),
+                      onTap: () => print("teste"),//pokemonPage(context, pkd.pokemons[i]),
                       child: Card(
                         child: Container(
                           height: 70,
@@ -72,7 +72,7 @@ List<Widget> _buildRows(BuildContext context,Pokedex pkd){
           Expanded(
               child: Material(
                     child: GestureDetector(
-                      onTap: () => pokemonPage(context, pkd.pokemons[i]),
+                      onTap: () => print("test"),//pokemonPage(context, pkd.pokemons[i]),
                       child: Card(
                         child: Container(
                           height: 70,
@@ -87,7 +87,7 @@ List<Widget> _buildRows(BuildContext context,Pokedex pkd){
           Expanded(
               child: Material(
                     child: GestureDetector(
-                      onTap: () => pokemonPage(context, pkd.pokemons[i+1]),
+                      onTap: () => print("test"),//pokemonPage(context, pkd.pokemons[i+1]),
                       child: Card(
                         child: Container(
                           height: 70,
